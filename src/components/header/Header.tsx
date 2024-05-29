@@ -18,9 +18,15 @@ export const Header = () => {
   };
 
   useDidUpdate(() => {
+    const regexp = /^([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
+
     const newColor = color.startsWith("#") ? color.substring(1) : color;
 
-    router.push(`/color?color=${newColor}`);
+    const isValid = regexp.test(newColor);
+
+    if (isValid) {
+      router.push(`/color?color=${newColor}`);
+    }
   }, [color]);
 
   return (
