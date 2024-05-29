@@ -1,0 +1,86 @@
+.container {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  transition: flex 0.2s cubic-bezier(0.8, 0, 1, 1);
+}
+
+.container:hover {
+  flex: 5;
+}
+
+.ruler {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  background-color: #fff;
+}
+
+.ruler > span {
+  width: 4px;
+  height: 80%;
+  background-color: #e4e4e7;
+  border-radius: 100px;
+  display: block;
+}
+
+.container:hover > .ruler > span {
+  background-color: #38bdf8;
+  transition: background 0.2s cubic-bezier(0.8, 0, 1, 1);
+}
+
+.card {
+  display: flex;
+  flex: 1;
+  padding: 2px;
+  overflow: hidden;
+}
+
+.color {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex: 1;
+}
+
+.details {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  bottom: -500px;
+}
+
+.container:hover .details {
+  animation: slideIn 0.3s cubic-bezier(0.8, 0, 1, 1) forwards;
+}
+
+@keyframes slideIn {
+  0% {
+    bottom: -500px;
+    opacity: 0;
+  }
+  100% {
+    bottom: 0px;
+    opacity: 1;
+  }
+}
+
+@media screen and (min-width: 991px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .ruler > span {
+    width: 80%;
+    height: 4px;
+  }
+
+  .details {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+}
