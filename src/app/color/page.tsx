@@ -1,4 +1,3 @@
-import { InputColor } from "@/components/InputColor/InputColor";
 import { Card } from "@/components/card/Card";
 import { Header } from "@/components/header/Header";
 import { Main } from "@/components/main/Main";
@@ -33,9 +32,7 @@ export default function Color({
 
   return (
     <>
-      <Header>
-        <InputColor />
-      </Header>
+      <Header />
       <Main>
         {colorObj.map((color, index) => (
           <Card details={color} key={index} />

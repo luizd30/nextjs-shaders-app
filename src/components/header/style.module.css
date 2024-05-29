@@ -2,3 +2,7 @@
   padding: 24px;
   background-color: white;
 }
+
+.wrapper {
+  max-width: 300px;
+}

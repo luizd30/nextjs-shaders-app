@@ -1,10 +1,37 @@
-import React, { ReactNode } from "react";
-import Styles from './style.module.css'
+"use client";
+import React, { useState } from "react";
+import Styles from "./style.module.css";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useDidUpdate } from "@mantine/hooks";
+import { ColorInput } from "@mantine/core";
 
-type Props = {
-  children: ReactNode;
-};
+export const Header = () => {
+  const router = useRouter();
 
-export const Header = ({ children }: Props) => {
-  return <header className={Styles.header}>{children}</header>;
+  const searchParams = useSearchParams();
+  const colorFromUrl = searchParams.get("color") || "";
+
+  const [color, setColor] = useState(`#${colorFromUrl}`);
+
+  const handleChange = (color: string) => {
+    setColor(color);
+  };
+
+  useDidUpdate(() => {
+    const newColor = color.startsWith("#") ? color.substring(1) : color;
+
+    router.push(`/color?color=${newColor}`);
+  }, [color]);
+
+  return (
+    <header className={Styles.header}>
+      <ColorInput
+        className={Styles.wrapper}
+        label="Pick color"
+        placeholder="Pick color"
+        value={color}
+        onChange={handleChange}
+      />
+    </header>
+  );
 };
